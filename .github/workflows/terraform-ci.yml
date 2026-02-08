@@ -2,17 +2,11 @@ name: Terraform CI
 
 on:
   push:
-    branches: ["main"]
   pull_request:
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        shell: bash
-        working-directory: terraform
 
     steps:
       - name: Checkout
@@ -22,13 +16,17 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform fmt
+        working-directory: terraform
         run: terraform fmt -check -recursive
 
       - name: Terraform init
+        working-directory: terraform
         run: terraform init -input=false
 
       - name: Terraform validate
+        working-directory: terraform
         run: terraform validate
 
       - name: Terraform plan
+        working-directory: terraform
         run: terraform plan -input=false
