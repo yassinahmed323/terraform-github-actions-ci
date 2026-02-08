@@ -29,3 +29,20 @@ This repository showcases real-world **DevOps & Terraform CI practices**, includ
 
 ## 📂 Repository Structure
 
+## ⚙️ CI Workflow Overview
+
+The GitHub Actions workflow runs automatically on every push to `main` and performs the following steps:
+
+1. **Terraform Format Check (`terraform fmt -check`)**
+   - Ensures consistent formatting across all Terraform files
+
+2. **Terraform Initialization (`terraform init`)**
+   - Downloads required providers in an isolated CI environment
+
+3. **Terraform Validation (`terraform validate`)**
+   - Verifies the Terraform configuration is syntactically and logically correct
+
+4. **Terraform Plan (`terraform plan`)**
+   - Generates an execution plan without applying any infrastructure changes
+
+❗ No cloud resources are created or modified — this pipeline is **CI-only**.
